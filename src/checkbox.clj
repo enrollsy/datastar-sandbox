@@ -51,29 +51,24 @@
       (swap! state update (:checkbox params) not)))
   (response (c/html (main request))))
 
+(defn checkboxes [request]
+  (cc/compile
+    [:section
+     [:div
+      [:input {:id "a" :type "checkbox" :checked (:a @state) :data-on:click "@post('/toggle?checkbox=a')"}]
+      [:label {:for "a"} "A"]]
+     [:div
+      [:input {:id "b" :type "checkbox" :checked (:b @state) :data-on:click "@post('/toggle?checkbox=b')"}]
+      [:label {:for "b"} "B"]]
+     [:div
+      [:input {:id "c" :type "checkbox" :checked (:c @state) :data-on:click "@post('/toggle?checkbox=c')"}]
+      [:label {:for "c"} "C"]]]))
+
 (defn main [request]
   (cc/compile
     [:main#main
-     [:section
-      [:div
-       [:input {:id "a" :type "checkbox" :checked (:a @state) :data-on:click "@post('/toggle?checkbox=a')"}]
-       [:label {:for "a"} "A"]]
-      [:div
-       [:input {:id "b" :type "checkbox" :checked (:b @state) :data-on:click "@post('/toggle?checkbox=b')"}]
-       [:label {:for "b"} "B"]]
-      [:div
-       [:input {:id "c" :type "checkbox" :checked (:c @state) :data-on:click "@post('/toggle?checkbox=c')"}]
-       [:label {:for "c"} "C"]]]
-     [:section
-      [:div
-       [:input {:id "a" :type "checkbox" :checked (:a @state) :data-on:click "@post('/toggle?checkbox=a')"}]
-       [:label {:for "a"} "A"]]
-      [:div
-       [:input {:id "b" :type "checkbox" :checked (:b @state) :data-on:click "@post('/toggle?checkbox=b')"}]
-       [:label {:for "b"} "B"]]
-      [:div
-       [:input {:id "c" :type "checkbox" :checked (:c @state) :data-on:click "@post('/toggle?checkbox=c')"}]
-       [:label {:for "c"} "C"]]]]))
+     (checkboxes request)
+     (checkboxes request)]))
 
 (defn response [body]
   {:status 200 :headers {"content-type" "text/html"} :body body})
