@@ -1,0 +1,9 @@
+{:paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.12.4"}
+        dev.data-star.clojure/brotli {:mvn/version "1.0.0-RC7"}
+        dev.data-star.clojure/http-kit {:mvn/version "1.0.0-RC7"}
+        http-kit/http-kit {:mvn/version "2.9.0-beta3"}
+        dev.onionpancakes/chassis {:mvn/version "1.0.365"}}
+ :aliases {:dev {:extra-deps {cider/cider-nrepl {:mvn/version "0.52.0"}
+                              nrepl/nrepl {:mvn/version "1.5.2"}}
+                 :main-opts ["-m" "nrepl.cmdline" "--middleware" "[cider.nrepl/cider-middleware]"]}}}
